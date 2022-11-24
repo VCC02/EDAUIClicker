@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="AltUIClicker.ppr"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="28" Y="130"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\UIClicker\ClickerClient\DllUtils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="37" Y="41"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\EDAUIClickerPluginsCommon.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="29" Y="4"/>
+        <UsageCount Value="53"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="9">
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="24" Column="12"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="19" Column="14" TopLine="3"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="21" Column="28" TopLine="3"/>
+      </Position>
+      <Position>
+        <Filename Value="..\EDAUIClickerPluginsCommon.pas"/>
+        <Caret Line="9" Column="16"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="23" Column="30" TopLine="4"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="30" Column="12" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="57" Column="25" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="49" Column="56" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="75" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="AltUIClicker.ppr"/>
+        <Caret Line="51" Column="33" TopLine="26"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

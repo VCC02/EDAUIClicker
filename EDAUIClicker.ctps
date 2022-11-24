@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="EDAUIClicker.ppr"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="19"/>
+        <CursorPos X="33" Y="42"/>
+        <UsageCount Value="36"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="EDAUIClickerMainForm.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmEDAUIClickerMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="29" Y="4"/>
+        <UsageCount Value="36"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\UIClicker\ClickerUtils\ClickerIniFiles.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="35"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmEDAProjectsClickerForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2916"/>
+        <CursorPos Y="2923"/>
+        <UsageCount Value="35"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\MiscUtils\InMemFileSystem.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="35"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Plugins\EDAUIClickerPlugins.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="43" Y="4"/>
+        <UsageCount Value="35"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Plugins\EDAUIClickerPluginsCommon.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="35"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\UIClicker\ClickerClient\DllUtils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="35"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\UIClicker\ClickerTemplateCallTreeForm.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmClickerTemplateCallTree"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="35"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\UIClicker\ClickerRemoteScreenForm.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmClickerRemoteScreen"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="88"/>
+        <CursorPos X="38" Y="98"/>
+        <UsageCount Value="35"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\UIClicker\ClickerUtils\ClickerUtils.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="24"/>
+        <CursorPos X="46" Y="41"/>
+        <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\UIClicker\ClickerUtils\ClickerActionsClient.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="173"/>
+        <CursorPos X="46" Y="192"/>
+        <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\UIClicker\ClickerUtils\ClickerFileProviderClient.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="43"/>
+        <CursorPos X="21" Y="28"/>
+        <UsageCount Value="14"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2957" Column="65" TopLine="2935"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2951" Column="61" TopLine="2941"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1785" Column="22" TopLine="1763"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1781" Column="92" TopLine="1764"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="320" Column="37" TopLine="292"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1781" Column="92" TopLine="1753"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2945" Column="35" TopLine="2935"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2952" Column="35" TopLine="2935"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2959" Column="35" TopLine="2935"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="320" Column="37" TopLine="305"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1781" TopLine="1771"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1782" TopLine="1771"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1784" Column="73" TopLine="1771"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="320" Column="37" TopLine="292"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1784" Column="73" TopLine="1756"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2951" Column="35" TopLine="2923"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2958" Column="35" TopLine="2930"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2965" Column="35" TopLine="2937"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="320" Column="37" TopLine="305"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1784" Column="73" TopLine="1756"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2306" Column="30" TopLine="2279"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2307" Column="35" TopLine="2279"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2966" Column="60" TopLine="2938"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="317" Column="26" TopLine="289"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="1783" TopLine="1766"/>
+      </Position>
+      <Position>
+        <Filename Value="EDAProjectsClickerForm.pas"/>
+        <Caret Line="2923" TopLine="2916"/>
+      </Position>
+      <Position>
+        <Filename Value="..\UIClicker\ClickerRemoteScreenForm.pas"/>
+        <Caret Line="98" Column="38" TopLine="88"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\UIClicker\ClickerUtils\ClickerFileProviderClient.pas"/>
+        <Line Value="220"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\UIClicker\ClickerUtils\ClickerFileProviderClient.pas"/>
+        <Line Value="223"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="EDAProjectsClickerForm.pas"/>
+        <Line Value="1783"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
+</CONFIG>

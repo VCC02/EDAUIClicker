@@ -1,0 +1,196 @@
+{
+    Copyright (C) 2022 VCC
+    creation date: Nov 2022
+    initial release date: 24 Nov 2022
+
+    author: VCC
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+    OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}
+
+
+library AltUIClicker;
+
+{$mode objfpc}{$H+}
+
+uses
+  SysUtils, Classes, IniFiles, DllUtils, EDAUIClickerPluginsCommon;
+
+
+var
+  PrjExtensions: string;
+  SchExtensions: string;
+  PCBExtensions: string;
+
+
+function ItemIndexWithUpperCase(AList: TStringList; ASearchedItem: string): Integer;
+var
+  i: Integer;
+begin
+  Result := -1;
+  for i := 0 to AList.Count - 1 do
+    if UpperCase(AList.Strings[i]) = ASearchedItem then
+    begin
+      Result := i;
+      Exit;
+    end;
+end;
+
+
+function GetDocumentTypeFromExtension(AExt: string): string;
+var
+  UpperCaseExt: string;
+  List: TStringList;
+begin
+  Result := CETC;
+  UpperCaseExt := UpperCase(AExt);
+
+  List := TStringList.Create;
+  try
+    List.Text := SchExtensions;
+    if ItemIndexWithUpperCase(List, UpperCaseExt) > -1 then
+    begin
+      Result := CSCH;
+      Exit;
+    end;
+
+    List.Text := PCBExtensions;
+    if ItemIndexWithUpperCase(List, UpperCaseExt) > -1 then
+    begin
+      Result := CPCB;
+      Exit;
+    end;
+  finally
+    List.Free;
+  end;
+end;
+
+
+function ReadListOfExtensionsFromIni(AIni: TMemIniFile; ASection: string): string;
+var
+  i, n: Integer;
+  Suffix: string;
+begin
+  Result := '';
+  n := AIni.ReadInteger(ASection, 'Count', 0);
+
+  for i := 0 to n - 1 do
+  begin
+    Suffix := IntToStr(i);
+    Result := Result + AIni.ReadString(ASection, 'Ext_' + Suffix, '.ext') + #13#10;
+  end;
+end;
+
+
+function InitPlugin(AExtraData: Pointer; AErrMsg: Pointer): Integer; cdecl;         //AExtraData is reserved for now
+var
+  Ini: TMemIniFile;
+  Fnm: string;
+  Err: string;
+begin
+  //Called once, at loading the plugin.
+  Err := '';
+
+  try
+    Fnm := ExtractFilePath(ParamStr(0)) + 'AltUIClicker.ini';  //exe dir
+    if not FileExists(Fnm) then
+    begin
+      Err := 'Plugin config file not found: ' + Fnm;
+      Exit;
+    end;
+
+    Ini := TMemIniFile.Create(Fnm);
+    try
+      PrjExtensions := ReadListOfExtensionsFromIni(Ini, CPRJ);
+      SchExtensions := ReadListOfExtensionsFromIni(Ini, CSCH);
+      PCBExtensions := ReadListOfExtensionsFromIni(Ini, CPCB);
+    finally
+      Ini.Free;
+    end;
+  finally
+    Result := SetPointedContentFromString(Err, AErrMsg);
+  end;
+end;
+
+
+function GetListsOfKnownEDAProjectExtensions(AListOfExtensions: Pointer): Integer; cdecl;  //returns the string length
+var
+  Content: string;
+begin
+  Content := PrjExtensions;
+  Result := SetPointedContentFromString(Content, AListOfExtensions);
+end;
+
+
+procedure GetEDAListsOfDocuments(AEDAProjectFileNameStr: Pointer; AListOfDocuments, AListOfTypes: Pointer; out AListOfDocumentsLen, AListOfTypesLen: Integer); cdecl;
+var                                                               //documents are schematics and PCBs
+  Ini: TMemIniFile;                                               //types are SCH, PCB, ETC
+  EDAProjectFileName: string;
+  ListOfDocuments, ListOfTypes: TStringList;
+  Sections: TStringList;
+  i: Integer;
+  FileExt, DocName: string;
+begin
+  SetPointedContentToString(AEDAProjectFileNameStr, EDAProjectFileName);
+
+  Ini := TMemIniFile.Create(EDAProjectFileName);
+  try
+    ListOfDocuments := TStringList.Create;
+    ListOfTypes := TStringList.Create;
+    Sections := TStringList.Create;
+    try
+      Ini.ReadSections(Sections);
+
+      for i := 0 to Sections.Count - 1 do
+        if Pos('Document', Sections.Strings[i]) = 1 then
+        begin
+          DocName := Ini.ReadString(Sections.Strings[i], 'DocumentPath', '');
+          FileExt := ExtractFileExt(DocName);
+
+          ListOfDocuments.Add(DocName);
+          ListOfTypes.Add(GetDocumentTypeFromExtension(FileExt));
+        end;
+
+      AListOfDocumentsLen := SetPointedContentFromString(ListOfDocuments.Text, AListOfDocuments);
+      AListOfTypesLen := SetPointedContentFromString(ListOfTypes.Text, AListOfTypes);
+    finally
+      ListOfDocuments.Free;
+      ListOfTypes.Free;
+      Sections.Free;
+    end;
+  finally
+    Ini.Free;
+  end;
+end;
+
+
+procedure DonePlugin; cdecl;
+begin
+  //Used for stateful plugins. Called once, at unloading the plugin.
+end;
+
+
+exports
+  InitPlugin,
+  GetListsOfKnownEDAProjectExtensions,
+  GetEDAListsOfDocuments,
+  DonePlugin;
+
+{$R *.res}
+
+begin
+end.
+
