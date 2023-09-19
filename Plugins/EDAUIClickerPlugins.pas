@@ -1,5 +1,5 @@
 {
-    Copyright (C) 2022 VCC
+    Copyright (C) 2023 VCC
     creation date: Nov 2022
     initial release date: 24 Nov 2022
 
@@ -71,6 +71,7 @@ var
 
 procedure LoadPlugin(APluginPath: string);
 begin
+  APluginPath := StringReplace(APluginPath, '$AppDir$', ExtractFileDir(ParamStr(0)), [rfReplaceAll]);
   if not FileExists(APluginPath) then
     raise Exception.Create(APluginPath + ' does not exist.');
 

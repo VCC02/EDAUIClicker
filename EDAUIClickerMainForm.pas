@@ -1,5 +1,5 @@
 {
-    Copyright (C) 2022 VCC
+    Copyright (C) 2023 VCC
     creation date: Nov 2022
     initial release date: 24 Nov 2022
 
@@ -74,13 +74,13 @@ type
     function HandleOnFileExists(const FileName: string): Boolean;
     function HandleOnTClkIniReadonlyFileCreate(AFileName: string): TClkIniReadonlyFile;
     procedure HandleOnSetTemplateOpenDialogInitialDir(AInitialDir: string);
-    function HandleOnTemplateOpenDialogExecute: Boolean;
-    function HandleOnGetTemplateOpenDialogFileName: string;
+    function HandleOnOpenDialogExecute(AFilter: string): Boolean;
+    function HandleOnGetOpenDialogFileName: string;
     procedure HandleOnSetTemplateSaveDialogInitialDir(AInitialDir: string);
     function HandleOnTemplateSaveDialogExecute: Boolean;
     function HandleOnGetTemplateSaveDialogFileName: string;
 
-    procedure HandleOnTemplateOpenSetMultiSelect;
+    procedure HandleOnSetOpenDialogMultiSelect;
 
     procedure HandleOnSetEDAClickerFileOpenDialogInitialDir(AInitialDir: string);
     function HandleOnEDAClickerFileOpenDialogExecute: Boolean;
@@ -132,11 +132,11 @@ begin
 
   frmClickerRemoteScreen.OnGetConnectionAddress := HandleOnGetConnectionAddress;
 
-  frmClickerTemplateCallTree.OnTemplateOpenSetMultiSelect := HandleOnTemplateOpenSetMultiSelect;
+  frmClickerTemplateCallTree.OnSetOpenDialogMultiSelect := HandleOnSetOpenDialogMultiSelect;
   frmClickerTemplateCallTree.OnFileExists := HandleOnFileExists;
   frmClickerTemplateCallTree.OnTClkIniReadonlyFileCreate := HandleOnTClkIniReadonlyFileCreate;
-  frmClickerTemplateCallTree.OnTemplateOpenDialogExecute := HandleOnTemplateOpenDialogExecute;
-  frmClickerTemplateCallTree.OnGetTemplateOpenDialogFileName := HandleOnGetTemplateOpenDialogFileName;
+  frmClickerTemplateCallTree.OnOpenDialogExecute := HandleOnOpenDialogExecute;
+  frmClickerTemplateCallTree.OnGetOpenDialogFileName := HandleOnGetOpenDialogFileName;
 end;
 
 
@@ -303,14 +303,15 @@ begin
 end;
 
 
-function TfrmEDAUIClickerMain.HandleOnTemplateOpenDialogExecute: Boolean;
+function TfrmEDAUIClickerMain.HandleOnOpenDialogExecute(AFilter: string): Boolean;
 begin
+  OpenDialog1.Filter := AFilter;
   Result := OpenDialog1.Execute;
   OpenDialog1.Options := OpenDialog1.Options - [ofAllowMultiSelect];
 end;
 
 
-function TfrmEDAUIClickerMain.HandleOnGetTemplateOpenDialogFileName: string;
+function TfrmEDAUIClickerMain.HandleOnGetOpenDialogFileName: string;
 begin
   Result := OpenDialog1.FileName;
 end;
@@ -334,7 +335,7 @@ begin
 end;
 
 
-procedure TfrmEDAUIClickerMain.HandleOnTemplateOpenSetMultiSelect;
+procedure TfrmEDAUIClickerMain.HandleOnSetOpenDialogMultiSelect;
 begin
   OpenDialog1.Options := OpenDialog1.Options + [ofAllowMultiSelect];
   FUsingMultiSelect := True;
