@@ -401,8 +401,6 @@ type
     property TextListOfProjectsDir: string read FTextListOfProjectsDir write FTextListOfProjectsDir;
     property ToBeUpdated: Boolean write SetToBeUpdated;
     property ListOfProjectsFileName: string read FListOfProjectsFileName write SetListOfProjectsFileName;
-
-    property FullTemplatesDir: string read FFullTemplatesDir write FFullTemplatesDir;
   public
     { Public declarations }
     procedure LoadSettings(AIni: TMemIniFile);
@@ -412,6 +410,7 @@ type
 
     property Modified: Boolean read FModified write SetModified;
     property ConfiguredRemoteAddress: string read FConfiguredRemoteAddress;
+    property FullTemplatesDir: string read FFullTemplatesDir write FFullTemplatesDir;
 
     property OnFileExists: TOnFileExists write FOnFileExists;
     property OnTClkIniReadonlyFileCreate: TOnTClkIniReadonlyFileCreate write FOnTClkIniReadonlyFileCreate;

@@ -52,16 +52,13 @@ type
     SaveDialog2: TSaveDialog;
     tmrStartup: TTimer;
     procedure btnShowEDAProjectsFormClick(Sender: TObject);
-    procedure btnDisplayTemplateCallTreeClick(Sender: TObject);
     procedure btnShowRemoteScreenShotFormClick(Sender: TObject);
+    procedure btnShowTemplateCallTreeClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
-    procedure rdgrpFileSystemClick(Sender: TObject);
     procedure tmrStartupTimer(Sender: TObject);
   private
     { Private declarations }
-    FUsingMultiSelect: Boolean;
 
     procedure LoadSettings;
     procedure SaveSettings;
@@ -73,20 +70,19 @@ type
 
     function HandleOnFileExists(const FileName: string): Boolean;
     function HandleOnTClkIniReadonlyFileCreate(AFileName: string): TClkIniReadonlyFile;
-    procedure HandleOnSetTemplateOpenDialogInitialDir(AInitialDir: string);
+
     function HandleOnOpenDialogExecute(AFilter: string): Boolean;
     function HandleOnGetOpenDialogFileName: string;
-    procedure HandleOnSetTemplateSaveDialogInitialDir(AInitialDir: string);
-    function HandleOnTemplateSaveDialogExecute: Boolean;
-    function HandleOnGetTemplateSaveDialogFileName: string;
+    function HandleOnGetFullTemplatesDir: string;
 
     procedure HandleOnSetOpenDialogMultiSelect;
-
     procedure HandleOnSetEDAClickerFileOpenDialogInitialDir(AInitialDir: string);
     function HandleOnEDAClickerFileOpenDialogExecute: Boolean;
     function HandleOnGetEDAClickerFileOpenDialogFileName: string;
     procedure HandleOnSetEDAClickerFileSaveDialogInitialDir(AInitialDir: string);
     function HandleOnEDAClickerFileSaveDialogExecute: Boolean;
+
+    function HandleOnLoadBitmap(ABitmap: TBitmap; AFileName: string): Boolean;
     function HandleOnGetEDAClickerFileSaveDialogFileName: string;
     procedure HandleOnGetListOfFilesFromDir(ADir, AFileExtension: string; AListOfFiles: TStringList);
     procedure HandleOnSaveTextToFile(AStringList: TStringList; const AFileName: string);
@@ -110,7 +106,7 @@ implementation
 
 
 uses
-  EDAProjectsClickerForm, ClickerTemplateCallTreeForm, ClickerRemoteScreenForm,
+  EDAProjectsClickerForm, ClickerTemplateCallTreeForm, ClickerRemoteScreenForm, BitmapConv,
   ClickerActionsClient, IniFiles;
 
 
@@ -137,6 +133,8 @@ begin
   frmClickerTemplateCallTree.OnTClkIniReadonlyFileCreate := HandleOnTClkIniReadonlyFileCreate;
   frmClickerTemplateCallTree.OnOpenDialogExecute := HandleOnOpenDialogExecute;
   frmClickerTemplateCallTree.OnGetOpenDialogFileName := HandleOnGetOpenDialogFileName;
+  frmClickerTemplateCallTree.OnGetFullTemplatesDir := HandleOnGetFullTemplatesDir;
+  frmClickerTemplateCallTree.OnLoadBitmap := HandleOnLoadBitmap;
 end;
 
 
@@ -152,13 +150,13 @@ begin
     Height := Ini.ReadInteger('MainWindow', 'Height', Height);
 
     if frmEDAProjectsClickerForm = nil then
-      MessageBox(Handle, 'frmEDAProjectsClickerForm = nil', 'dll', MB_ICONERROR);
+      MessageBox(Handle, 'frmEDAProjectsClickerForm = nil', 'EDAUIClicker', MB_ICONERROR);
 
     if frmClickerTemplateCallTree = nil then
-      MessageBox(Handle, 'frmClickerTemplateCallTree = nil', 'dll', MB_ICONERROR);
+      MessageBox(Handle, 'frmClickerTemplateCallTree = nil', 'EDAUIClicker', MB_ICONERROR);
 
     if frmClickerRemoteScreen = nil then
-      MessageBox(Handle, 'frmClickerRemoteScreen = nil', 'dll', MB_ICONERROR);
+      MessageBox(Handle, 'frmClickerRemoteScreen = nil', 'EDAUIClicker', MB_ICONERROR);
 
     frmEDAProjectsClickerForm.LoadSettings(Ini);
     frmClickerTemplateCallTree.LoadSettings(Ini);
@@ -203,20 +201,7 @@ end;
 
 procedure TfrmEDAUIClickerMain.FormCreate(Sender: TObject);
 begin
-  FUsingMultiSelect := False;
   tmrStartup.Enabled := True;
-end;
-
-
-procedure TfrmEDAUIClickerMain.FormDestroy(Sender: TObject);
-begin
-  //
-end;
-
-
-procedure TfrmEDAUIClickerMain.rdgrpFileSystemClick(Sender: TObject);
-begin
-  frmEDAProjectsClickerForm.SetCmbTemplateContentOnAllCmbs;
 end;
 
 
@@ -254,7 +239,7 @@ begin
 end;
 
 
-procedure TfrmEDAUIClickerMain.btnDisplayTemplateCallTreeClick(
+procedure TfrmEDAUIClickerMain.btnShowTemplateCallTreeClick(
   Sender: TObject);
 begin
   frmClickerTemplateCallTree.Show;
@@ -297,12 +282,6 @@ begin
 end;
 
 
-procedure TfrmEDAUIClickerMain.HandleOnSetTemplateOpenDialogInitialDir(AInitialDir: string);
-begin
-  OpenDialog1.InitialDir := AInitialDir;
-end;
-
-
 function TfrmEDAUIClickerMain.HandleOnOpenDialogExecute(AFilter: string): Boolean;
 begin
   OpenDialog1.Filter := AFilter;
@@ -313,34 +292,17 @@ end;
 
 function TfrmEDAUIClickerMain.HandleOnGetOpenDialogFileName: string;
 begin
-  Result := OpenDialog1.FileName;
-end;
-
-
-procedure TfrmEDAUIClickerMain.HandleOnSetTemplateSaveDialogInitialDir(AInitialDir: string);
-begin
-  SaveDialog1.InitialDir := AInitialDir;
-end;
-
-
-function TfrmEDAUIClickerMain.HandleOnTemplateSaveDialogExecute: Boolean;
-begin
-  Result := SaveDialog1.Execute;
-end;
-
-
-function TfrmEDAUIClickerMain.HandleOnGetTemplateSaveDialogFileName: string;
-begin
-  Result := SaveDialog1.FileName;
+  if OpenDialog1.Files.Count > 1 then
+    Result := OpenDialog1.Files.Text
+  else
+    Result := OpenDialog1.FileName;
 end;
 
 
 procedure TfrmEDAUIClickerMain.HandleOnSetOpenDialogMultiSelect;
 begin
   OpenDialog1.Options := OpenDialog1.Options + [ofAllowMultiSelect];
-  FUsingMultiSelect := True;
 end;
-
 
 
 procedure TfrmEDAUIClickerMain.HandleOnSetEDAClickerFileOpenDialogInitialDir(AInitialDir: string);
@@ -376,6 +338,43 @@ end;
 function TfrmEDAUIClickerMain.HandleOnGetEDAClickerFileSaveDialogFileName: string;
 begin
   Result := SaveDialog2.FileName;
+end;
+
+
+function TfrmEDAUIClickerMain.HandleOnLoadBitmap(ABitmap: TBitmap; AFileName: string): Boolean;
+begin
+  Result := FileExists(AFileName);
+
+  if Result then
+  begin
+    if UpperCase(ExtractFileExt(AFileName)) = '.BMP' then
+      ABitmap.LoadFromFile(AFileName)
+    else
+      //if UpperCase(ExtractFileExt(AFileName)) = '.PMTV' then
+      //  ComposePrimitiveOnBmp(ABitmap, AFileName)
+      //else
+        if UpperCase(ExtractFileExt(AFileName)) = '.EXE' then
+          DrawExeIconOnBmp(ABitmap, AFileName)
+        else
+          if (UpperCase(ExtractFileExt(AFileName)) = '.PNG') then
+            DrawPngOnBmp(ABitmap, AFileName)
+          else
+            if (UpperCase(ExtractFileExt(AFileName)) = '.JPG') or (UpperCase(ExtractFileExt(AFileName)) = '.JPEG') then
+              DrawJpgOnBmp(ABitmap, AFileName)
+            else
+              if (UpperCase(ExtractFileExt(AFileName)) = '.ICO') then
+                DrawIcoOnBmp(ABitmap, AFileName);
+  end;
+end;
+
+
+function TfrmEDAUIClickerMain.HandleOnGetFullTemplatesDir: string;
+begin
+  try
+    Result := frmEDAProjectsClickerForm.FullTemplatesDir;
+  except
+    Result := ''; //in case frmClickerActions is nil
+  end;
 end;
 
 

@@ -1,7 +1,7 @@
 object frmEDAUIClickerMain: TfrmEDAUIClickerMain
-  Left = 944
+  Left = 946
   Height = 218
-  Top = 314
+  Top = 313
   Width = 294
   Caption = 'EDA UI Clicker'
   ClientHeight = 218
@@ -117,10 +117,9 @@ object frmEDAUIClickerMain: TfrmEDAUIClickerMain
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
-  LCLVersion = '8.2'
   OnClose = FormClose
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
+  LCLVersion = '7.5'
   object imgAppIcon: TImage
     Left = 8
     Height = 32
@@ -266,8 +265,8 @@ object frmEDAUIClickerMain: TfrmEDAUIClickerMain
       16337616337616FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     }
-    TabOrder = 2
     OnClick = btnShowRemoteScreenShotFormClick
+    TabOrder = 2
   end
   object bitbtnShowTemplateCallTree: TBitBtn
     Left = 80
@@ -303,8 +302,8 @@ object frmEDAUIClickerMain: TfrmEDAUIClickerMain
       FFFFFFFFFFFFFFFFFFFFFFFFFF4CB1224CB1224CB1224CB1224CB1224CB122FF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     }
+    OnClick = btnShowTemplateCallTreeClick
     TabOrder = 1
-    OnClick = btnDisplayTemplateCallTreeClick
   end
   object bitbtnShowEDAProjectsForm: TBitBtn
     Left = 80
@@ -340,8 +339,8 @@ object frmEDAUIClickerMain: TfrmEDAUIClickerMain
       5C81CC5C83AB96B8D2BEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     }
-    TabOrder = 0
     OnClick = btnShowEDAProjectsFormClick
+    TabOrder = 0
   end
   object lblBitness: TLabel
     Left = 8

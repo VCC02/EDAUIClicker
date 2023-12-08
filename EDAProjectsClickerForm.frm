@@ -1,7 +1,7 @@
 object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
-  Left = 482
+  Left = 630
   Height = 680
-  Top = 235
+  Top = 227
   Width = 1119
   Caption = 'EDAUIClicker - EDA Projects'
   ClientHeight = 680
@@ -117,10 +117,10 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
     0079800006F98000003981000001800000018000000180000001FFFFFFFFFFFF
     FFFF
   }
-  LCLVersion = '8.2'
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  LCLVersion = '7.5'
   object spdbtnPlaySelectedFile: TSpeedButton
     Left = 8
     Height = 26
@@ -159,8 +159,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     }
-    ParentFont = False
     OnClick = spdbtnPlaySelectedFileClick
+    ParentFont = False
   end
   object spdbtnPlayAllFiles: TSpeedButton
     Left = 160
@@ -201,10 +201,10 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     }
+    OnClick = spdbtnPlayAllFilesClick
     ShowHint = True
     ParentFont = False
     ParentShowHint = False
-    OnClick = spdbtnPlayAllFilesClick
   end
   object spdbtnStopPlaying: TSpeedButton
     Left = 283
@@ -252,8 +252,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Webdings'
-    ParentFont = False
     OnClick = spdbtnExtraPlayAllFilesClick
+    ParentFont = False
   end
   object spdbtnExtraPlaySelectedFile: TSpeedButton
     Left = 135
@@ -264,8 +264,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Webdings'
-    ParentFont = False
     OnClick = spdbtnExtraPlaySelectedFileClick
+    ParentFont = False
   end
   object grpVariables: TGroupBox
     Left = 888
@@ -276,7 +276,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
     Caption = 'Available Variables / Replacements'
     ClientHeight = 406
     ClientWidth = 222
-    ParentBackground = False
     TabOrder = 0
     object memVariables: TMemo
       Left = 10
@@ -347,10 +346,10 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'Webdings'
+        OnClick = spdbtnExtraAddProjectClick
         ShowHint = True
         ParentFont = False
         ParentShowHint = False
-        OnClick = spdbtnExtraAddProjectClick
       end
       object spdbtnExtraRemoveProject: TSpeedButton
         Left = 805
@@ -362,8 +361,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'Webdings'
-        ParentFont = False
         OnClick = spdbtnExtraRemoveProjectClick
+        ParentFont = False
       end
       object lblLoadedListOfProjects: TLabel
         Left = 25
@@ -434,7 +433,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 661
         Caption = 'pnl vstProjects place'
         Color = clYellow
-        ParentBackground = False
         ParentColor = False
         TabOrder = 15
         Visible = False
@@ -446,8 +444,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 136
         Anchors = [akTop, akRight]
         Caption = 'Add EDA Project...'
-        TabOrder = 0
         OnClick = btnAddProjectClick
+        TabOrder = 0
       end
       object btnRemoveProject: TButton
         Left = 670
@@ -457,10 +455,10 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 136
         Anchors = [akTop, akRight]
         Caption = 'Remove EDA File...'
+        OnClick = btnRemoveProjectClick
         ParentShowHint = False
         ShowHint = True
         TabOrder = 1
-        OnClick = btnRemoveProjectClick
       end
       object cmbTemplate: TComboBox
         Left = 670
@@ -470,16 +468,16 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 188
         Anchors = [akTop, akRight]
         ItemHeight = 16
-        ParentShowHint = False
-        PopupMenu = pmTemplates
-        ShowHint = True
-        Style = csOwnerDrawFixed
-        TabOrder = 2
         OnChange = cmbTemplateChange
         OnCloseUp = cmbTemplateCloseUp
         OnDropDown = cmbTemplateDropDown
         OnMouseDown = cmbTemplateMouseDown
         OnMouseEnter = cmbTemplateMouseEnter
+        ParentShowHint = False
+        PopupMenu = pmTemplates
+        ShowHint = True
+        Style = csOwnerDrawFixed
+        TabOrder = 2
       end
       object lbePageSize: TLabeledEdit
         Left = 670
@@ -510,12 +508,12 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           'Portrait'
           'Landscape'
         )
+        OnChange = cmbPageLayoutChange
         ParentShowHint = False
         ShowHint = True
         Style = csOwnerDrawFixed
         TabOrder = 4
         Text = 'Portrait'
-        OnChange = cmbPageLayoutChange
       end
       object lbeSearchProject: TLabeledEdit
         Left = 3
@@ -536,8 +534,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 95
         Anchors = [akLeft, akBottom]
         Caption = 'DisplayFull Path'
-        TabOrder = 6
         OnClick = chkDisplayFullPathClick
+        TabOrder = 6
       end
       object grpListOfProjects: TGroupBox
         Left = 670
@@ -548,7 +546,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Caption = 'List Of Projects'
         ClientHeight = 50
         ClientWidth = 184
-        ParentBackground = False
         TabOrder = 7
         object spdbtnExtraSaveListOfProjects: TSpeedButton
           Left = 163
@@ -559,8 +556,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           Font.Color = clWindowText
           Font.Height = -12
           Font.Name = 'Webdings'
-          ParentFont = False
           OnClick = spdbtnExtraSaveListOfProjectsClick
+          ParentFont = False
         end
         object lblListOfProjectsStatus: TLabel
           Left = 3
@@ -581,8 +578,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           Top = 2
           Width = 53
           Caption = 'Load...'
-          TabOrder = 0
           OnClick = btnLoadListOfProjectsClick
+          TabOrder = 0
         end
         object btnNewListOfProjects: TButton
           Left = 3
@@ -590,8 +587,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           Top = 2
           Width = 50
           Caption = 'New'
-          TabOrder = 1
           OnClick = btnNewListOfProjectsClick
+          TabOrder = 1
         end
         object bitbtnSaveListOfProjects: TBitBtn
           Left = 119
@@ -599,8 +596,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           Top = 2
           Width = 44
           Caption = 'Save'
-          TabOrder = 2
           OnClick = btnSaveListOfProjectsClick
+          TabOrder = 2
         end
       end
       object lbePageScaling: TLabeledEdit
@@ -649,16 +646,16 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 188
         Anchors = [akTop, akRight]
         ItemHeight = 16
-        ParentShowHint = False
-        PopupMenu = pmTemplates
-        ShowHint = True
-        Style = csOwnerDrawFixed
-        TabOrder = 10
         OnChange = cmbBeforeAllChildTemplatesChange
         OnCloseUp = cmbTemplateCloseUp
         OnDropDown = cmbTemplateDropDown
         OnMouseDown = cmbBeforeAllChildTemplatesMouseDown
         OnMouseEnter = cmbTemplateMouseEnter
+        ParentShowHint = False
+        PopupMenu = pmTemplates
+        ShowHint = True
+        Style = csOwnerDrawFixed
+        TabOrder = 10
       end
       object cmbAfterAllChildTemplates: TComboBox
         Left = 670
@@ -668,16 +665,16 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 188
         Anchors = [akTop, akRight]
         ItemHeight = 16
-        ParentShowHint = False
-        PopupMenu = pmTemplates
-        ShowHint = True
-        Style = csOwnerDrawFixed
-        TabOrder = 11
         OnChange = cmbAfterAllChildTemplatesChange
         OnCloseUp = cmbTemplateCloseUp
         OnDropDown = cmbTemplateDropDown
         OnMouseDown = cmbAfterAllChildTemplatesMouseDown
         OnMouseEnter = cmbTemplateMouseEnter
+        ParentShowHint = False
+        PopupMenu = pmTemplates
+        ShowHint = True
+        Style = csOwnerDrawFixed
+        TabOrder = 11
       end
       object bitbtnUpdateProject: TBitBtn
         Left = 670
@@ -687,10 +684,10 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Width = 150
         Anchors = [akTop, akRight]
         Caption = 'Update EDA Project Data'
+        OnClick = btnUpdateProjectClick
         ParentShowHint = False
         ShowHint = True
         TabOrder = 12
-        OnClick = btnUpdateProjectClick
       end
       object lbeUserNotes: TLabeledEdit
         Left = 670
@@ -713,7 +710,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Caption = 'EDA File Custom Variables / Replacements'
         ClientHeight = 192
         ClientWidth = 266
-        ParentBackground = False
         TabOrder = 14
         OnMouseLeave = grpEDAFileCustomVarsMouseLeave
         object vallstEDAFileCustomVars: TValueListEditor
@@ -763,8 +759,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Top = 584
         Width = 25
         Caption = '...'
-        TabOrder = 17
         OnClick = btnBrowseActionTemplatesDirClick
+        TabOrder = 17
       end
     end
     object TabSheetConnectionSettings: TTabSheet
@@ -780,7 +776,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Caption = 'Client settings'
         ClientHeight = 87
         ClientWidth = 284
-        ParentBackground = False
         TabOrder = 0
         object lbeClientModeServerAddress: TLabeledEdit
           Left = 8
@@ -825,8 +820,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           Top = 12
           Width = 75
           Caption = 'Connect'
-          TabOrder = 2
           OnClick = btnConnectClick
+          TabOrder = 2
         end
         object btnDisconnect: TButton
           Left = 200
@@ -834,8 +829,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           Top = 42
           Width = 75
           Caption = 'Disconnect'
-          TabOrder = 3
           OnClick = btnDisconnectClick
+          TabOrder = 3
         end
         object pnlMissingFilesRequest: TPanel
           Left = 120
@@ -847,7 +842,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
           Font.Color = clWhite
           Font.Height = -11
           Font.Name = 'Tahoma'
-          ParentBackground = False
           ParentColor = False
           ParentFont = False
           TabOrder = 4
@@ -861,7 +855,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Caption = 'Allowed file extensions for server'
         ClientHeight = 87
         ClientWidth = 181
-        ParentBackground = False
         TabOrder = 1
         object memAllowedFileExtensionsForServer: TMemo
           Left = 8
@@ -888,7 +881,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Caption = 'Allowed file directories for server'
         ClientHeight = 110
         ClientWidth = 268
-        ParentBackground = False
         TabOrder = 2
         object memAllowedFileDirsForServer: TMemo
           Left = 8
@@ -935,8 +927,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Top = 24
         Width = 30
         Caption = '...'
-        TabOrder = 1
         OnClick = btnBrowseEDAPluginPath32Click
+        TabOrder = 1
       end
       object btnReloadPlugin: TButton
         Left = 392
@@ -944,8 +936,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Top = 24
         Width = 88
         Caption = 'Reload plugin'
-        TabOrder = 2
         OnClick = btnReloadPluginClick
+        TabOrder = 2
       end
       object lblEDAPluginErrorMessage: TLabel
         Left = 8
@@ -975,45 +967,45 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
         Top = 72
         Width = 30
         Caption = '...'
-        TabOrder = 4
         OnClick = btnBrowseEDAPluginPath64Click
+        TabOrder = 4
       end
     end
   end
   object chkPlayPrjOnPlayAll: TCheckBox
     Left = 378
-    Height = 17
+    Height = 19
     Hint = 'This option is saved in .edaclk files.'
     Top = 0
-    Width = 113
+    Width = 115
     Caption = 'Play PRJ On Play All'
     Checked = True
+    OnClick = chkPlayPrjOnPlayAllClick
     ParentShowHint = False
     ShowHint = True
     State = cbChecked
     TabOrder = 2
-    OnClick = chkPlayPrjOnPlayAllClick
   end
   object chkPlayPrjMainTemplateOnPlayAll: TCheckBox
     Left = 378
-    Height = 17
+    Height = 19
     Hint = 'This option is saved in .edaclk files.'
     Top = 19
-    Width = 185
+    Width = 187
     Caption = 'Play PRJ Main Template On Play All'
+    OnClick = chkPlayPrjMainTemplateOnPlayAllClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 3
-    OnClick = chkPlayPrjMainTemplateOnPlayAllClick
   end
   object chkStayOnTop: TCheckBox
     Left = 801
-    Height = 17
+    Height = 19
     Top = 0
-    Width = 74
+    Width = 76
     Caption = 'Stay on top'
-    TabOrder = 4
     OnClick = chkStayOnTopClick
+    TabOrder = 4
   end
   object grpExecStatusDebugVars: TGroupBox
     Left = 888
@@ -1024,7 +1016,6 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
     Caption = 'Debug Variables / Replacements'
     ClientHeight = 204
     ClientWidth = 221
-    ParentBackground = False
     TabOrder = 5
     object vallstStatusVariables: TValueListEditor
       Left = 1
@@ -1056,8 +1047,8 @@ object frmEDAProjectsClickerForm: TfrmEDAProjectsClickerForm
     Top = 0
     Width = 136
     Caption = 'Set Replacements'
-    TabOrder = 6
     OnClick = btnSetReplacementsClick
+    TabOrder = 6
   end
   object imglstCalledTemplates: TImageList
     BkColor = 15245824
