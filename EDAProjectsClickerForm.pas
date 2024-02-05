@@ -1,5 +1,5 @@
 {
-    Copyright (C) 2023 VCC
+    Copyright (C) 2024 VCC
     creation date: Nov 2022
     initial release date: 24 Nov 2022
 
@@ -219,6 +219,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnRemoveProjectClick(Sender: TObject);
+    procedure lbePathToTemplatesChange(Sender: TObject);
+    procedure lbePathToTemplatesKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure MenuItem_SetDefaultClick(Sender: TObject);
     procedure tmrDisplayMissingFilesRequestsTimer(Sender: TObject);
     procedure vstProjectsGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
@@ -446,6 +449,7 @@ uses
 
 const
   CDefaultTemplateString = 'Default: ';
+  CBoolToCheckState: array[Boolean] of TCheckState = (csUncheckedNormal, csCheckedNormal);
 
 procedure TLoggingSyncObj.DoSynchronize;
 begin
@@ -1829,6 +1833,31 @@ begin
 end;
 
 
+procedure TfrmEDAProjectsClickerForm.lbePathToTemplatesChange(Sender: TObject);
+begin
+  lbePathToTemplates.Hint := 'The $AppDir$ replacement is available.';
+
+  if Pos('..', lbePathToTemplates.Text) > 0 then //there may be files or folder names with two dots which will not be allowed because of this
+  begin
+    lbePathToTemplates.Font.Color := clRed;
+    lbePathToTemplates.Hint := lbePathToTemplates.Hint + #13#10#13#10 +
+                               'The ".." folder name is not allowed in paths, because UIClicker''s file provider does not allow it.';
+  end
+  else
+    lbePathToTemplates.Font.Color := clWindowText;
+end;
+
+
+procedure TfrmEDAProjectsClickerForm.lbePathToTemplatesKeyUp(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  FullTemplatesDir := lbePathToTemplates.Text;
+  if FFullTemplatesDir > '' then
+    if FFullTemplatesDir[Length(FFullTemplatesDir)] = '\' then
+      FFullTemplatesDir := Copy(FFullTemplatesDir, 1, Length(FFullTemplatesDir) - 1);
+end;
+
+
 procedure TfrmEDAProjectsClickerForm.MenuItem_SetDefaultClick(Sender: TObject);
 var
   Idx: Integer;
@@ -2726,6 +2755,12 @@ procedure TfrmEDAProjectsClickerForm.PlaySelectedFileInDebuggingModeClick(Sender
 var
   Node: PVirtualNode;
 begin
+  if FPollForMissingServerFiles = nil then
+  begin
+    MessageBox(Handle, PChar(Application.Title + ' is not connected to UIClicker. Please connect first.'), PChar(Application.Title), MB_ICONINFORMATION);
+    Exit;
+  end;
+
   Node := vstProjects.GetFirstSelected;
   if Node = nil then
   begin
@@ -2757,6 +2792,12 @@ procedure TfrmEDAProjectsClickerForm.spdbtnPlaySelectedFileClick(Sender: TObject
 var
   Node: PVirtualNode;
 begin
+  if FPollForMissingServerFiles = nil then
+  begin
+    MessageBox(Handle, PChar(Application.Title + ' is not connected to UIClicker. Please connect first.'), PChar(Application.Title), MB_ICONINFORMATION);
+    Exit;
+  end;
+
   Node := vstProjects.GetFirstSelected;
   if Node = nil then
   begin
@@ -2788,6 +2829,19 @@ procedure TfrmEDAProjectsClickerForm.spdbtnPlayAllFilesClick(Sender: TObject);
 var
   Node: PVirtualNode;
 begin
+  if FPollForMissingServerFiles = nil then
+  begin
+    MessageBox(Handle, PChar(Application.Title + ' is not connected to UIClicker. Please connect first.'), PChar(Application.Title), MB_ICONINFORMATION);
+    Exit;
+  end;
+
+  Node := vstProjects.GetFirst;
+  if Node = nil then
+  begin
+    MessageBox(Handle, 'No EDA projects are in the list.', PChar(Application.Title), MB_ICONINFORMATION);
+    Exit;
+  end;
+
   spdbtnStopPlaying.Enabled := True;
   spdbtnPlaySelectedFile.Enabled := False;
   spdbtnPlayAllFiles.Enabled := False;
@@ -2798,10 +2852,6 @@ begin
   FStopAllActionsOnDemand := False;
   DoOnSetStopAllActionsOnDemand(FStopAllActionsOnDemand);
   try
-    Node := vstProjects.GetFirst;
-    if Node = nil then
-      Exit;
-
     PlayAllStartingAtNode(Node, False);
   finally
     spdbtnStopPlaying.Enabled := False;
@@ -2819,6 +2869,12 @@ procedure TfrmEDAProjectsClickerForm.PlayAllFilesbelowselectedincludingselected1
 var
   Node: PVirtualNode;
 begin
+  if FPollForMissingServerFiles = nil then
+  begin
+    MessageBox(Handle, PChar(Application.Title + ' is not connected to UIClicker. Please connect first.'), PChar(Application.Title), MB_ICONINFORMATION);
+    Exit;
+  end;
+
   spdbtnStopPlaying.Enabled := True;
   spdbtnPlaySelectedFile.Enabled := False;
   spdbtnPlayAllFiles.Enabled := False;
@@ -2849,6 +2905,12 @@ procedure TfrmEDAProjectsClickerForm.PlayAllFilesbelowselectedindebuggingmode1Cl
 var
   Node: PVirtualNode;
 begin
+  if FPollForMissingServerFiles = nil then
+  begin
+    MessageBox(Handle, PChar(Application.Title + ' is not connected to UIClicker. Please connect first.'), PChar(Application.Title), MB_ICONINFORMATION);
+    Exit;
+  end;
+
   spdbtnStopPlaying.Enabled := True;
   spdbtnPlaySelectedFile.Enabled := False;
   spdbtnPlayAllFiles.Enabled := False;
@@ -2878,6 +2940,12 @@ procedure TfrmEDAProjectsClickerForm.PlayAllFilesInDebuggingModeClick(Sender: TO
 var
   Node: PVirtualNode;
 begin
+  if FPollForMissingServerFiles = nil then
+  begin
+    MessageBox(Handle, PChar(Application.Title + ' is not connected to UIClicker. Please connect first.'), PChar(Application.Title), MB_ICONINFORMATION);
+    Exit;
+  end;
+
   spdbtnStopPlaying.Enabled := True;
   spdbtnPlaySelectedFile.Enabled := False;
   spdbtnPlayAllFiles.Enabled := False;

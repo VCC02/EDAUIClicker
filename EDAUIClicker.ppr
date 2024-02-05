@@ -1,5 +1,5 @@
 {
-    Copyright (C) 2023 VCC
+    Copyright (C) 2024 VCC
     creation date: Nov 2022
     initial release date: 24 Nov 2022
 
@@ -35,8 +35,9 @@ uses
   {$ENDIF}
   Interfaces, // this includes the CT adLCL widgetset
   Forms, EDAUIClickerMainForm, EDAProjectsClickerForm, EDAUIClickerPlugins,
-  EDAUIClickerPluginsCommon, InMemFileSystem, ClickerIniFiles, DllUtils,
-  ClickerTemplateCallTreeForm, ClickerRemoteScreenForm
+  EDAUIClickerPluginsCommon, InMemFileSystem, ClickerIniFiles,
+  ClickerExtraUtils, DllUtils, ClickerTemplateCallTreeForm,
+  ClickerRemoteScreenForm
   { you can add units after this };
 
 {$R *.res}
